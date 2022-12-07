@@ -246,19 +246,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fc87ac046368646b416c0ffb561062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rutine: 0
-  cronometre: 0
-  direction: 0
-  anim: {fileID: 0}
-  Speed_walk: 0
-  Speed_run: 0
-  AlertRange: 101
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  Speed: 0
+  legth: 0
+  counter: 0
+  StarPosition: 0
+  DistanceBreak: 0
+  DistanceBack: 0
+  VisionRange: 0
   giveDamage: 0
   life: 100
   Sliderlife: {fileID: 92188041}
+  Bullet: {fileID: 0}
+  point: {fileID: 0}
 --- !u!61 &547665129
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -788,7 +787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753031659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.8, y: 132.3, z: 0}
+  m_LocalPosition: {x: 370.3, y: 133.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -807,17 +806,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4beceab04ef88b042bead016566adafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartRange: 0
+  Slider: {fileID: 0}
   _speed: 1.01
+  Break_Distance: 1.71
+  Back_Distance: 2.25
+  PlayerT: {fileID: 0}
   OSliderL: {fileID: 0}
   LifeFirstForm: 200
   LifeSecondForm: 300
   rb: {fileID: 0}
-  RadiousAttack: 1.53
-  shootCooldown: 4.01
-  Break_Distance: 1.71
-  Back_Distance: 2.25
-  SecondAttack: 13
-  EspecialAttack: 23
+  tempo: 0
+  point: {fileID: 0}
+  Bullet: {fileID: 0}
 --- !u!50 &753031664
 Rigidbody2D:
   serializedVersion: 4
@@ -1059,7 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 192
-  jump: 4.6
+  jump: 6
   Bullet:
   - {fileID: 3597276457564073662, guid: e482d98450f1e834088cbe858f1d030f, type: 3}
   - {fileID: 123680158659656901, guid: 7b9f1e348dcae514bac3bfcadd962f5e, type: 3}
@@ -1070,6 +1071,7 @@ MonoBehaviour:
   SliderLife: {fileID: 0}
   BoundSpeed: {x: 0, y: 0}
   TimeLost: 0
+  deathTime: 0
 --- !u!1 &875842382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,6 +1326,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1088715537}
   - component: {fileID: 1088715536}
+  - component: {fileID: 1088715539}
+  - component: {fileID: 1088715538}
   m_Layer: 0
   m_Name: Kit medico
   m_TagString: Untagged
@@ -1398,6 +1402,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1088715538
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088715535}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17.3125, y: 24.125}
+    newSize: {x: 2.77, y: 3.86}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17.3125, y: 24.125}
+  m_EdgeRadius: 0
+--- !u!114 &1088715539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088715535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf9550845bcdb44fb7ed7a999d01284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 813033007}
 --- !u!1 &1139547327
 GameObject:
   m_ObjectHideFlags: 0
