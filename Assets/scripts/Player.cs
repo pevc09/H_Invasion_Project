@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -31,17 +32,25 @@ public class Player : MonoBehaviour
     [SerializeField]private Vector2 BoundSpeed;
     [SerializeField] private float TimeLost;
 
+    [Header("Death")]
+    [SerializeField]private float deathTime;
+    private Scene scenes;
+
+    [Header("Special Shott")]
+    private float timer = 5;
+    private bool wait = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();  
         anim= GetComponent<Animator>();
+        scenes = SceneManager.GetActiveScene();
     }
     void Start()
     {
         SliderLife.maxValue= life;
         SliderLife.value = SliderLife.maxValue;
     }
-
 
     void Update()
     {
@@ -51,7 +60,7 @@ public class Player : MonoBehaviour
             Jump();
             Shoot();
         }
-        
+        SliderLife.value = life;
     }
 
    private void Jump()
@@ -87,11 +96,16 @@ public class Player : MonoBehaviour
     {
         SliderLife.value += healthLife;
     }
-    public void ReciveDamage(int damage, Vector2 pos)
+    public void ReciveDamage(int damage)
     {
         life -= damage;
-        Bound(pos);
+        Bound(new Vector2(10,10));
         StartCoroutine(LostControl());
+        if (life <= 0)
+        {
+
+            StartCoroutine(Death());
+        }
     }
 
     public void Bound(Vector2 KnockPoint)
@@ -105,5 +119,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(TimeLost);
         CanMove = true;
     }
-        
+
+    private IEnumerator Death()
+    {
+        anim.SetBool("Death",true);
+        yield return new WaitForSeconds(deathTime);
+        SceneManager.LoadScene(scenes.name);
+    }
 }
